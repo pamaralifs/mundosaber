@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load app_lembrete_filters %}
+{% block conteudo %}
+<header class="masthead bg-secpondary text-secondary">
+    <script>
+       function verifica(value){
+           var input = document.getElementById("id_search");
+           if (value == 0) {
+             input.value = '';
+             input.disabled = true;
+           } else {
+             input.disabled = false;
+             input.focus();
+           }
+       };
+    
+       function mostra_oculta(){
+           var x = document.getElementById("formPesquisar");
+           if (x.style.display === "none") {
+               x.style.display = "block";
+           } else {
+               x.style.display = "none";
+           }
+       };
+    </script>
+    <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" id="btnMO" onclick="mostra_oculta()" class="btn btn-primary btn-sm my-2">Pesquisar</button>
+    </div>
+    <div class="d-flex justify-content-center flex-wrap">
+        <form class="col-lg-6" id="formPesquisar" data-toggle="validator" role="form" method="GET" style="display: none;">
+            <div class="alert alert-primary text-center" role="header">
+                <h4>{{ nome_model_plural | upper}}</h4>
+            </div>
+            <div class="alert alert-primary">
+                <div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p class="alert alert-danger alert-dismissable {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message|safe }}
+                    </p>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.search|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    <input type="radio" name="type" id="todos" value="0" checked="checked" onclick=verifica(this.value)>
+                    <label for="todos" class="control-label">Listar todos&nbsp;&nbsp;</label>
+                    <input type="radio" name="type" id="contenha" value="1" onclick=verifica(this.value)>
+                    <label for="contenha" class="control-label">Que contenha&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" name="type" id="inicia" value="2" onclick=verifica(this.value)>
+                    <label for="inicia" class="control-label">Que inicie com&nbsp;&nbsp;</label>
+                    <input type="radio" name="type" id="termina" value="3" onclick=verifica(this.value)>
+                    <label for="termina" class="control-label">Que termine com</label>
+                </div>
+                <div class="form-group">
+                    <a href="{% url url_novo %}" class="btn btn-primary btn-sm my-2 my-sm-0 btnSpace m-1"><i class="far fa-file"></i>&nbsp;Novo</a>
+                    <button type="submit" class="btn btn-warning btn-sm my-2 my-sm-0 btnSpace m-1"><i class="fas fa-search"></i>&nbsp;Pesquisar</button>
+                </div>
+                <div>
+                    (*) Campos de preenchimento obrigatório.
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <div class="alert alert-primary">
+              <table class="table table-hover table-bordered table-sm table-responsive-sm">
+                <thead class="text-center" style="background-color: rgb(185, 185, 185);">
+                  <tr>
+                    <th colspan="4">{{ nome_model_plural | upper }}</th>
+                  </tr>
+                  {% if object_list %}
+                  <tr>
+                    <th>{{ object_list|verbose_name_field_index_filter:1|upper }}</th>
+                    <th>{{ object_list|verbose_name_field_index_filter:2|upper }}</th>
+                    <th width='70'>{{ object_list|verbose_name_field_index_filter:3|upper }}</th>
+                    <th width='162'>AÇÃO</th>
+                  </tr>
+                  {% else %}
+                  <tr>
+                    <th>Nenhum registro encontrado!</th>
+                  </tr>
+                  {% endif %}
+                </thead>
+                <tbody style="background-color:beige;">
+                  {% for object in object_list %}
+                  <tr>
+                    <td>{{ object|value_field_index_filter:1 }}</td>
+                    <td>{{ object|value_field_index_filter:2 }}</td>
+                    <td>{{ object|value_field_index_filter_S_N:3 }}</td>
+                    <td class="text-center">
+                      <a href="{% url url_detalhe object.id %}" class="btn btn-success btn-sm my-2 my-sm-0 btnSpace"><i
+                        class="fas fa-search-plus" title="Ver"></i></a>
+                      <a href="{% url url_alterar object.id %}" class="btn btn-primary btn-sm my-2 my-sm-0 btnSpace"><i
+                        class="far fa-edit"  title="Alterar"></i></a>
+                      <a href="{% url url_excluir object.id %}" class="btn btn-danger btn-sm my-2 my-sm-0 btnSpace"><i
+                        class="far fa-trash-alt" title="Excluir"></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+        <div>
+            {#{% endif %}#}
+            <p style="margin:0 0 0 0"><strong>Total de registros exibidos nesta página:</strong>&nbsp;{{ object_list.count }}</p>
+            <p style="margin:0 0 0 0"><strong>TOTAL GERAL de registros filtrados:</strong>&nbsp;{{ total_registros }}</p>
+             {# .... **Now the pagination section** .... #}
+            {% include "app_lembrete/paginacao.html" %}
+        </div>
+    </div>    
+</header> 
+{% endblock %}   

@@ -1,0 +1,26 @@
+{% if is_paginated %}
+   <div class="pagination">
+      {# CÓDIGO ATUAL MAIS ENXUTO #}
+      {# https://stackoverflow.com/questions/41131802/django-paginator-page-range-for-not-displaying-all-numbers #}
+      {% if page_obj.has_previous %}
+         <a href="{{ request.path }}?search={{ search }}&amp;type={{ type }}&amp;page=1" class="btn btn-warning btn-sm my-2 btnSpace"><i class="fas fa-step-backward"></i></a>&nbsp;
+         <a href="{{ request.path }}?search={{ search }}&amp;type={{ type }}&amp;page={{ page_obj.previous_page_number }}" class="btn btn-warning btn-sm my-2 btnSpace"><i class="fas fa-caret-left"></i></a>&nbsp;
+      {% endif %}
+      <!---->
+      {% for p in  page_obj.paginator.page_range %}
+         {% if p <= page_obj.number|add:1 and p >= page_obj.number|add:-1 %}
+             {% if page_obj.number == forloop.counter %}
+                <a href="?search={{ search }}&amp;type={{ type }}&amp;page={{forloop.counter}}" class="current btn btn-success btn-sm my-2 btnSpace">{{forloop.counter}}</a>&nbsp;
+             {% else %}
+                <a href="?search={{ search }}&amp;type={{ type }}&amp;page={{forloop.counter}}" class="btn btn-warning btn-sm my-2 btnSpace">{{forloop.counter}}</a>&nbsp;
+             {% endif %}
+         {% endif %}
+      {% endfor %}
+      <!---->
+      {% if page_obj.has_next %}
+         <a href="{{ request.path }}?search={{ search }}&amp;type={{ type }}&amp;page={{ page_obj.next_page_number }}" class="btn btn-warning btn-sm my-2 btnSpace"><i class="fas fa-caret-right"></i></a>&nbsp;
+         <a href="{{ request.path }}?search={{ search }}&amp;type={{ type }}&amp;page={{ page_obj.paginator.num_pages }}" class="btn btn-warning btn-sm my-2 btnSpace"><i class="fas fa-step-forward"></i></a>&nbsp;
+      {% endif %}
+      <a href="{% url url_novo %}" class="btn btn-primary btn-sm my-2 btnSpace">Novo</a>
+   </div>
+{% endif %}

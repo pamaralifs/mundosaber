@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<header class="masthead bg-secpondary text-secondary">
+    <div class="d-flex col-12 justify-content-center flex-wrap"> 
+        <div>
+            <div class="alert alert-primary text-center" role="header">
+                  <h4>Acesso Administrativo</h4>
+            </div>
+            <div class="alert alert-primary">
+                  <div class="text-danger font-weight-bold">
+                     <p>Sessão de login do administrador encerrada!</p>
+                  </div>
+                  <hr>
+                  <div class="justify-content-center">
+                     <a href="{% url 'login' %}" class="btn btn-secondary btn-sm my-2 my-sm-0 btnSpace m-1">Efetuar login novamente</a>
+                     <a href="{% url '/' %}" class="btn btn-secondary btn-sm my-2 my-sm-0 btnSpace m-1">Home</a>
+                  </div>                                         
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}

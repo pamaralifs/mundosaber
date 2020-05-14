@@ -1,0 +1,62 @@
+{% load static %}        
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- Footer Telefone -->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="mb-4">TELEFONE</h4>
+                        <p class="lead mb-0">(79) 3254-9705</p>
+                    </div>
+                    <!-- Footer Redes Sociais e Endereço -->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="mb-4">REDES SOCIAIS E ENDEREÇO</h4>
+                        <a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/colegiomundosaber/">
+                            <i class="fab fa-fw fa-instagram"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="mailto:serginho.manhae@gmail.com">
+                            <i class="fas fa-envelope pr-1"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="https://www.youtube.com/channel/UC-elJVvg2VPDTKOau20MCEQ">
+                            <i class="fab fa-youtube pr-1"></i>
+                        </a>
+                        <br><br>
+                        <p>Rua 51 nº 356 - Bairro Taiçoca<br>Nossa Sra. do Socorro - SE<br>CEP: 49160-000</p>
+                    </div>
+                    <!-- Footer Localização -->
+                    <div class="col-lg-4">
+                        <h4 class="mb-4">LOCALIZAÇÃO</h4>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.697547935709!2d-37.08244298545465!3d-10.834442023480955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7054c53a0ac7da9%3A0xe2138c209971025f!2sCentro%20Educacional%20Mundo%20do%20Saber!5e0!3m2!1spt-BR!2sbr!4v1588647587640!5m2!1spt-BR!2sbr" width="250" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Copyright Section-->
+        <section class="copyright py-4 text-center text-white">
+            <div class="container">
+                <div>
+                    <small class="pre-wrap">Copyright ©</small>
+                </div>
+                <div>
+                    <small class="pre-wrap">Sérgio&nbsp;&nbsp;<i class="fas fa-mobile-alt"></i>&nbsp;(79) 98122-7820  /  Paulo&nbsp;&nbsp;<i class="fas fa-mobile-alt"></i>&nbsp;(79) 98802-4266</small>
+                </div>
+                <div>
+                {% if acessos %}
+                    <small class="pre-wrap">Versão 1.0 - Ano 2020 - Acessos {{ acessos | stringformat:'04d' }}</small>
+                {% else %}
+                    <small class="pre-wrap">Versão 1.0 - Ano 2020</small>
+                {% endif %}
+                </div>
+            </div>
+        </section>
+        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+        <div class="scroll-to-top position-fixed"><a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a></div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="{% static 'assets/mail/jqBootstrapValidation.js' %}"></script>
+        <script src="{% static 'assets/mail/contact_me.js' %}"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>

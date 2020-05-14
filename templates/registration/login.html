@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block conteudo %}
+<header class="masthead bg-secpondary text-secondary">
+    <div class="d-flex justify-content-center flex-wrap"> 
+        <form id="formLogin"  method="POST" action="{% url 'login' %}">
+            <div class="col-md-12 alert alert-primary text-center" role="header">
+                <h4>Acesso Administrativo</h4>
+            </div>
+            {% csrf_token %}
+            {#{ form|crispy }#}
+            <div class="col-md-12 alert alert-primary">
+                {% if next != '/' and next != '/read/' and next != '/creditos/' and next != '/usuario/login/' %}
+                {% if user.is_authenticated %}
+                <div class="text-danger font-weight-bold">
+                    <p>"Seu perfil de usuário não lhe dá acesso a esta página!<br>Faça login com uma conta de usuário que tenha acesso.</p> 
+                </div>
+                {% else %}
+                <div class="text-danger font-weight-bold">
+                    <p>Por favor, faça o login para ter acesso à operação desejada.</p>
+                </div>
+                {% endif %}
+                {% endif %}
+                <div class="col-12">
+                   {{ form.username|as_crispy_field }} 
+                </div>
+                <div class="col-12">
+                    {{ form.password|as_crispy_field }}
+                </div>
+                <div class="col-md-12">
+                    <button class="btn btn-secondary btn-sm my-2 my-sm-0 btnSpace m-1" type="submit">Login</button>
+                    <a href="javascript:void(0)" onClick="history.go(-1); return false;" class="btn btn-success btn-sm btnSpace m-1">
+                              <i class="far fa-caret-square-left"></i> Voltar</a>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <div>
+                        (*) Campos de preenchimento obrigatório.
+                    </div>                                   
+                </div>
+            </div>
+        </form>
+    </div>
+    {# Assumes you setup the password_reset view in your URLconf #}
+    {# <p><a href="{% url 'password_reset' %}">Lost password?</a></p> #}
+</header>
+{% endblock %}

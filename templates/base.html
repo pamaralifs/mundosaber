@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Freelancer - Start Bootstrap Theme</title>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <!-- Core theme CSS (includes Bootstrap 4)-->
+     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Fonts CSS-->
+    <link rel="stylesheet" href="{% static 'css/heading.css' %}">
+    <link rel="stylesheet" href="{% static 'css/body.css' %}">
+</head>
+<body id="page-top">
+<!-- BODY -->
+    <!-- NAVBAR -->
+    {% include 'navbar.html' %}
+    <!-- HEADERs/SECTIONs/DIVs DE CONTEÚDOS -->
+    {% block conteudo %}
+    {% endblock %}
+    <!-- FOOTER -->
+    {% include 'footer.html' %}
+</body>
+</html>

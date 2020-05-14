@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load app_lembrete_filters %}
+{% block conteudo %}
+<header class="masthead bg-secpondary text-secondary">
+    <div class="d-flex justify-content-center flex-wrap">
+        <div class="col-lg-6">
+            <div class="alert alert-primary text-center" role="header">
+                <h4>{{ nome_model | upper}}</h4>
+            </div>
+            <div class="alert alert-primary">
+                <div class="card-body" style="background-color: rgb(248, 202, 190);">
+                    <p class="text-danger font-weight-bold">DESEJA EXCLUIR O {{ nome_model | upper }}?</p>
+                    <p><strong>{{ object|verbose_name_field_filter:0 }}:</strong> {{ object | value_field_index_filter:0 | stringformat:'04d' }}</p>
+                    <p><strong>{{ object|verbose_name_field_filter:1|upper }}:</strong> {{ object | value_field_index_filter:1 }}</p>
+                    <p><strong>{{ object|verbose_name_field_filter:2|upper }}:</strong> {{ object | value_field_index_filter:2 }}</p>
+                    <form id="formExcluir" data-toggle="validator" role="form" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm my-2 my-sm-0 btnSpace">
+                            <i class="far fa-trash-alt"></i>&nbsp;Excluir</button>
+                            <a href="javascript:void(0)" onClick="history.go(-1); return false;" class="btn btn-success btn-sm my-2 my-sm-0 btnSpace">
+                            <i class="far fa-caret-square-left"></i>&nbsp;Voltar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+

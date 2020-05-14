@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block conteudo %}
+<header class="masthead bg-secpondary text-secondary">
+    <div class="d-flex justify-content-center flex-wrap">
+        <form enctype="multipart/form-data" class="col-lg-6" id="formCreate" data-toggle="validator" role="form" method="POST">
+            <div class="alert alert-primary text-center" role="header">
+                <h4>{{ nome_model | upper}}</h4>
+            </div>
+            <div class="alert alert-primary">
+                {% csrf_token %}
+                <div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p class="alert alert-danger alert-dismissable {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message|safe }}
+                    </p>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form|crispy }} 
+                </div>
+                <div>
+                    <button class="btn btn-warning btn-sm my-2 my-sm-0 btnSpace m-1" type="submit">
+                        <i class="far fa-save"></i>&nbsp;Salvar</button>
+                    <a href="javascript:void(0)" onClick="history.go(-1); return false;" 
+                        class="btn btn-success btn-sm btnSpace m-1"><i class="far fa-window-close"></i>&nbspVoltar</a>
+                    <div>
+                        (*) Campos de preenchimento obrigatório.
+                    </div>
+                </div>
+            </div>       
+        </form>
+    </div>   
+</header>
+{% endblock %}
