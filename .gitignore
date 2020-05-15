@@ -5,6 +5,7 @@
 __pycache__
 /static
 /documentos
+/media
 .DS_Store
 db.sqlite3
 acessos.txt
