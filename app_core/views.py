@@ -1,12 +1,25 @@
 from django.shortcuts import render
-from django.views.generic import View,TemplateView
+from django.views.generic import View,TemplateView,ListView
 from .models import Acesso
+from app_lembrete.models import Lembrete
 
 # Create your views here.
 
 #HOME
-class Home(TemplateView):  # extend from TemplateView
+class Home(TemplateView):  # extend from TemplateView e NÃO TEM def query_set
     template_name = 'app_core/index.html'
+    ordering = ['-id'] # Ou ordeno aqui
+    #template_name = 'app_lembrete/lembrete_visiveis_list.html' SERÁ VIA INCLUDE
+    #paginate_by = 3
+
+    # Métodos CBVs
+    # http://pythonclub.com.br/class-based-views-django.html
+    #def get_queryset(self,**kwargs):
+        #queryset = super(Home, self).get_queryset()
+        #queryset = queryset.filter(visivel = 'S').order_by('-id')
+        #return queryset.order_by('-id')
+        #print(self.model.objects._meta.verbose_name)
+        #return self.model.filter(visivel = 'S').order_by('-id')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -43,4 +56,15 @@ class Home(TemplateView):  # extend from TemplateView
         context['host_cliente'] = obj_acesso.host_cliente
         context['acessos'] = obj_acesso.id
 
+        obj_lembretes = Lembrete.objects.filter(visivel = 'S').order_by('-id')
+        context['nome_model_plural'] = Lembrete._meta.verbose_name_plural
+        context['objects'] = obj_lembretes
         return context
+
+    # Métodos CBVs
+    # http://pythonclub.com.br/class-based-views-django.html
+    def get_queryset(self,**kwargs):
+        queryset = super(LembreteList, self).get_queryset()
+        #queryset = queryset.filter(visivel = 'S').order_by('-id')
+        #return queryset.order_by('-id')
+        return self.model.filter(visivel = 'S').order_by('-id')

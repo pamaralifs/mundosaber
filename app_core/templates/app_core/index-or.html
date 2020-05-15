@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+<header class="masthead bg-secpondary text-secondary text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- LOGO DA EMPRESA-->
+        <div>
+            <img src="{% static 'assets/img/logoescola.png' %}" class="img-fluid" alt="logoescola">
+        </div>
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading mb-0">Sejam Bem-Vindos!</h1><br>
+        <!-- Masthead Subheading-->
+        <p class="pre-wrap masthead-subheading font-weight-light mb-0">Educação com responsabilidade e compromisso.</p>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <div class="permissoes col-12 d-flex justify-content-center flex-wrap">
+            <a class="btn btn-secondary btn-sm pre-wrap masthead-subheading text-white font-weight-light btnSpace m-1 js-scroll-trigger" href="#instituicao">Instituição</a>
+            <a class="btn btn-secondary btn-sm pre-wrap masthead-subheading text-white font-weight-light btnSpace m-1 js-scroll-trigger" href="#eventos">Eventos</a>
+            <a class="btn btn-secondary btn-sm pre-wrap masthead-subheading text-white font-weight-light btnSpace m-1 js-scroll-trigger" href="#lembretes">Lembretes</a>
+            <a class="btn btn-secondary btn-sm pre-wrap masthead-subheading text-white font-weight-light btnSpace m-1 js-scroll-trigger" href="#visite-youtube">Visite-nos Youtube</a>
+        </div>
+    </div>
+</header>
+<!-- SEÇÃO INSTITUIÇÃO -->
+<section class="page-section bg-primary text-white mb-0" id="instituicao">
+    <div class="container">
+        <!-- Instituição Section Heading-->
+        <div class="text-center">
+            <h2 class="page-section-heading d-inline-block text-white">SOBRE A INSTITUIÇÃO</h2>
+        </div>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Instituição Section Content-->
+        <div class="row">
+            <div class="col-lg-4 ml-auto">
+                <p class="pre-wrap lead">O Centro Educacional Mundo do Saber é uma instituição educacional que tem objetivo formar pessoas com princípios, valores e pensamento independente. Prezamos muito pelo fortalecimento dos laços entre família e escola.</p>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <p class="pre-wrap lead">Acreditamos que o trabalho em equipe, aliado ao reconhecimento das individualidades, é o melhor caminho para preparar nossos alunos para a vida. Com 24 anos de experiência, garantimos a nossos clientes e colaboradores uma educação com compromisso e qualidade.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SEÇÃO EVENTOS -->
+<section class="page-section mb-0" id="eventos">
+    <div class="container">
+        <!-- Eventos Section Heading-->
+        <div class="text-center">
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block">NOSSOS EVENTOS</h2>
+        </div>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Eventos Grid Items-->
+        <div class="row justify-content-center">
+            <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="2"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="3"></li>
+                </ol>
+                <div style="width: 450px;">
+                    <div id="slide" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner center-block">
+                            <div id="foto1" class="carousel-item">
+                                <img class="d-block w-100" src="{% static 'assets/img/Event2.jpeg' %}" alt="Peça" title="Peça">
+                            </div>
+                            <div id="foto2" class="carousel-item active">
+                                <img class="d-block w-100" src="{% static 'assets/img/Event3.jpeg' %}" alt="Visita animais" title="Visita animais">
+                            </div>
+                            <div id="foto3" class="carousel-item">
+                                <img class="d-block w-100" src="{% static 'assets/img/Event4.jpeg' %}" alt="Peça" title="Peça">
+                            </div>
+                            <div id="foto4" class="carousel-item">
+                                <img class="d-block w-100" src="{% static 'assets/img/Event5.jpeg' %}" alt="Gincana" title="Gincana">  
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselIndicators" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselIndicators" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SEÇÃO LEMBRETES -->
+<section class="page-section bg-primary text-white mb-0"  id="lembretes">
+    <div class="container">
+        <!-- Lembretes Section Heading-->
+        <div class="text-center">
+            <h2 class="page-section-heading d-inline-block mb-0">LEMBRETES</h2>
+        </div>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Lembretes Section Content-->
+        <div class="row justify-content-center text-justify">
+            <div class="col-lg-4 mr-auto">
+                <span class="lead font-weight-bold">Lembrete 1</span>
+                <p class="pre-wrap lead">O Centro Educacional Mundo do Saber é uma instituição educacional que tem objetivo formar pessoas com princípios, valores e pensamento independente. Prezamos muito pelo fortalecimento dos laços entre família e escola.</p>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <span class="lead font-weight-bold">Lembrete 2</span>
+                <p class="pre-wrap lead">Acreditamos que o trabalho em equipe, aliado ao reconhecimento das individualidades, é o melhor caminho para preparar nossos alunos para a vida. Com 24 anos de experiência, garantimos a nossos clientes e colaboradores uma educação com compromisso e qualidade.</p>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <span class="lead font-weight-bold">Lembrete 3</span>
+                <p class="pre-wrap lead">O Centro Educacional Mundo do Saber é uma instituição educacional que tem objetivo formar pessoas com princípios, valores e pensamento independente. Prezamos muito pelo fortalecimento dos laços entre família e escola.</p>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <span class="lead font-weight-bold">Lembrete 3</span>
+                <p class="pre-wrap lead">O Centro Educacional Mundo do Saber é uma instituição educacional que tem objetivo formar pessoas com princípios, valores e pensamento independente. Prezamos muito pelo fortalecimento dos laços entre família e escola.</p>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <span class="lead font-weight-bold">Lembrete 3</span>
+                <p class="pre-wrap lead">O Centro Educacional Mundo do Saber é uma instituição educacional que tem objetivo formar pessoas com princípios, valores e pensamento independente. Prezamos muito pelo fortalecimento dos laços entre família e escola.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SEÇÃO VISITE-NOS NO YOUTUBE -->
+{% include "app_core/index_lembretes_visiveis.html" %}
+<section class="page-section mb-0" id="visite-youtube">
+    <div class="container">
+        <!-- Youtube Section Heading-->
+        <div class="text-center">
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block">VISITE-NOS NO YOUTUBE</h2>
+        </div>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Youtube Grid Items-->
+        <div class="row justify-content-center">
+            <div>
+                <iframe style="width: 480px; height: 270px;" src="https://www.youtube.com/embed/hdyk1CXV1OA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% load app_core_filters %}
+<section class="page-section bg-primary text-white mb-0"  id="lembretes">
+  <div class="container">
+    <div class="container">
+        <!-- Lembretes Section Heading-->
+        <div class="text-center">
+            <h2 class="page-section-heading d-inline-block mb-0">{{ nome_model_plural | upper }}</h2>
+        </div>
+      <!-- Icon Divider-->
+      <div class="divider-custom divider-light">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+          <div class="divider-custom-line"></div>
+      </div>
+      <!-- Lembretes Section Content-->
+      {% if objects %}
+      <div class="row justify-content-center text-left">
+          {% for object in objects %}
+          <div class="col-lg-4 mr-auto">
+              <span class="lead font-weight-bold">Lembrete {{ forloop.counter }}</span><br>
+              <p class="lead font-weight-bold">{{ object }}</p>
+              <p class="pre-wrap lead text-justify">{{ object|value_field_index_filter:2 }}</p>
+          </div>
+          {% endfor %}
+      {% else %}
+      <div class="justify-content-center text-justify"></div>
+          <p class="pre-wrap lead text-center">Caríssimos alunos, não há nenhum lembrete no momento. Mas, fiquem ligados.</p>
+          <p class="pre-wrap lead text-center">Continuem sempre acessando o nosso site!</p>
+      {% endif %}
+      </div>
+  </div>
+</section>

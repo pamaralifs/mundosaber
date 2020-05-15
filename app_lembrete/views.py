@@ -35,7 +35,7 @@ class LembreteCreate(LoginRequiredMixin,SuccessMessageMixin,CreateView):
         return super(LembreteCreate, self).form_valid(form)
 
 #READ
-class LembreteList(ListView):
+class LembreteList(LoginRequiredMixin, ListView):
     model = Lembrete
     ordering = ['-id'] # Ou ordeno aqui
     form_class = LembreteForm1Filtro
@@ -160,7 +160,7 @@ class LembreteDelete(LoginRequiredMixin, DeleteView):
 
 
 #DETAIL
-class LembreteDetail(DetailView):
+class LembreteDetail(LoginRequiredMixin, DetailView):
     model = Lembrete
 
     def get_context_data(self, **kwargs):
@@ -174,7 +174,7 @@ class LembreteDetail(DetailView):
 #DETAIL cbv específica para forçar download do arquivo, caso contrário o browser abre/visualiz o arquivo
 # View DetailView para download
 # https://stackoverflow.com/questions/1156246/having-django-serve-downloadable-files
-class LembreteDownload(DetailView):
+class LembreteDownload(LoginRequiredMixin, ListView):
     model = Lembrete
 
     def get(self, request, *args, **kwargs):

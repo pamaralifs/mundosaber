@@ -40,7 +40,7 @@ class MaterialCreate(LoginRequiredMixin,SuccessMessageMixin,CreateView):
         return super(MaterialCreate, self).form_valid(form)
 
 #READ
-class MaterialList(ListView):
+class MaterialList(LoginRequiredMixin, ListView):
     model = Material
     ordering = ['-id'] # Ou ordeno aqui
     form_class = MaterialForm1Filtro
@@ -168,7 +168,7 @@ class MaterialDelete(LoginRequiredMixin, DeleteView):
 
 
 #DETAIL
-class MaterialDetail(DetailView):
+class MaterialDetail(LoginRequiredMixin, DetailView):
     model = Material
 
     def get_context_data(self, **kwargs):
@@ -182,7 +182,7 @@ class MaterialDetail(DetailView):
 #DETAIL cbv específica para forçar download do arquivo, caso contrário o browser abre/visualiz o arquivo
 # View DetailView para download
 # https://stackoverflow.com/questions/1156246/having-django-serve-downloadable-files
-class MaterialDownload(DetailView):
+class MaterialDownload(LoginRequiredMixin, DetailView):
     model = Material
 
     def get(self, request, *args, **kwargs):
