@@ -124,10 +124,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 # VARIÁVEIS DE AMBIENTE
 STATIC_URL = '/static/' #
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/') #
+
+# https://stackoverflow.com/questions/24022558/differences-between-staticfiles-dir-static-root-and-media-root
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/') # Não serve em desenvolvimento
+# Serve apenas para produção, não funciona em desenvolvimento, nem mesmo que adicione no url path se debug true, como o caso de arquivos de media
+# Inicialmente deverá estar vazio (tanto em produção comoe em desenvolvimento)
+# Irá concentrar os arquivos estáticos em produção neste diretório após o comando collectstatic para o servidor web localizá-lo após setá-lo no próprio servidor web
+if not DEBUG: 
+    STATIC_ROOT = 'static/' #
+
 STATICFILES_DIRS = [
-  os.path.join(BASE_DIR, 'mundodosaber/static/'), # Dentro da pasta do projeto, o collectstatic leva depois para static
-]
+  os.path.join(BASE_DIR, 'mundodosaber/static/'), # Informa para coletar arquivos estáticos em outros diretórios que não seja de uma aplicação, dentro da pasta do projeto por exemplo, o collectstatic leva depois para static
+] #
+
 MEDIA_URL = '/media/' #
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') #
 LOGIN_REDIRECT_URL = '/'  #

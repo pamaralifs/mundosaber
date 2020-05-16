@@ -27,6 +27,7 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
 ]
 
+# Apenas para servir arquivo de media em desenvolvimento
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

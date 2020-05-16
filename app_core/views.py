@@ -2,24 +2,15 @@ from django.shortcuts import render
 from django.views.generic import View,TemplateView,ListView
 from .models import Acesso
 from app_lembrete.models import Lembrete
+from app_nivel_escolar.models import NivelEscolar
+from app_serie_escolar.models import SerieEscolar
+from app_material.models import Material
 
 # Create your views here.
 
 #HOME
 class Home(TemplateView):  # extend from TemplateView e NÃO TEM def query_set
     template_name = 'app_core/index.html'
-    ordering = ['-id'] # Ou ordeno aqui
-    #template_name = 'app_lembrete/lembrete_visiveis_list.html' SERÁ VIA INCLUDE
-    #paginate_by = 3
-
-    # Métodos CBVs
-    # http://pythonclub.com.br/class-based-views-django.html
-    #def get_queryset(self,**kwargs):
-        #queryset = super(Home, self).get_queryset()
-        #queryset = queryset.filter(visivel = 'S').order_by('-id')
-        #return queryset.order_by('-id')
-        #print(self.model.objects._meta.verbose_name)
-        #return self.model.filter(visivel = 'S').order_by('-id')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -42,7 +33,6 @@ class Home(TemplateView):  # extend from TemplateView e NÃO TEM def query_set
         if not obj_acesso.ip_cliente and x_forwarded_for:
             obj_acesso.ip_cliente = obj_acesso.ip_cliente_x_forwarded_ultimo
 
-
         obj_acesso.host_cliente = self.request.META.get('HTTP_HOST', None) 
         obj_acesso.agente_cliente_navegador = self.request.META.get('HTTP_USER_AGENT', None) 
         obj_acesso.save()
@@ -61,10 +51,32 @@ class Home(TemplateView):  # extend from TemplateView e NÃO TEM def query_set
         context['objects'] = obj_lembretes
         return context
 
-    # Métodos CBVs
-    # http://pythonclub.com.br/class-based-views-django.html
-    def get_queryset(self,**kwargs):
-        queryset = super(LembreteList, self).get_queryset()
-        #queryset = queryset.filter(visivel = 'S').order_by('-id')
-        #return queryset.order_by('-id')
-        return self.model.filter(visivel = 'S').order_by('-id')
+class EducacaoInfantil(TemplateView):  # extend from TemplateView e NÃO TEM def query_set
+    template_name = 'app_core/educacao_infantil.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        #obj_series = NivelEscolar.objects.filter(series__visivel = 'S')
+        #User.objects.get(id=1).receivers.all()
+        obj_series = NivelEscolar.objects.get(id=1).series.all()
+        context['nome_model_plural'] = Material._meta.verbose_name_plural
+        context['objects'] = obj_series
+        return context
+
+
+class EnsinoFundamental1(TemplateView):  # extend from TemplateView e NÃO TEM def query_set
+    template_name = 'app_core/ensino_fundamental1.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        #context['now'] = datetime.now()
+        return context
+
+class EnsinoFundamental2(TemplateView):  # extend from TemplateView e NÃO TEM def query_set
+    template_name = 'app_core/ensino_fundamental2.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        #context['now'] = datetime.now()
+        return context

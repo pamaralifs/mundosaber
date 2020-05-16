@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load app_core_filters %}
+{% block conteudo %}
+<header class="masthead bg-secpondary text-secondary" id="cabecalho">
+    <div class="container d-flex align-items-center flex-column" id="textocabeca" >
+        Infantil
+   
+       </div>
+    <div class="container">
+        <!-- Materias Section Heading-->
+        <div class="text-center">
+          <h2 class="page-section-heading d-inline-block mb-0">{{ nome_model_plural | upper }} - Educação Infantil</h2>
+        </div>
+      <!-- Lembretes Section Content-->
+      {% if objects %}
+      <div class="row justify-content-center text-left">
+          {% for object in objects %}
+          <div class="col-sm-6">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">{{ object|value_field_index_filter:1 }} </h5>
+                      <p class="card-text">Clique para ir aos materiais do maternal </p>
+                      <a href="#" class="btn btn-info">Clique aqui!</a>
+                  </div>
+              </div>
+          </div> 
+          {% endfor %}
+          {% else %}
+          <div class="justify-content-center text-justify"></div>
+              <p class="pre-wrap lead text-center">Não há SÉRIES escolares cadastradas para este nível educacional!</p>
+          </div>
+          {% endif %}
+      </div>
+</header>
+{% endblock %}
