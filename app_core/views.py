@@ -125,7 +125,7 @@ class ListarMateriaisSerie(TemplateView):
         context = super().get_context_data(**kwargs)
         #context = super(ListarMateriaisSerie, self).get_context_data(**kwargs)
         self.serie_id = self.kwargs['pk']
-        print('serie',self.serie_id)
+        #print('serie',self.serie_id)
         if self.serie_id:
             obj_materiais = SerieEscolar.objects.get(id=self.serie_id).materiais.all().order_by('-id')
         #print('queryset',queryset)
@@ -133,6 +133,13 @@ class ListarMateriaisSerie(TemplateView):
         context['nome_serie'] = SerieEscolar.objects.get(id=self.serie_id)
         context['objects'] = obj_materiais
         context['url_download'] = 'app_core:material_download'
+        print('nivel',SerieEscolar.objects.get(id=self.serie_id).nivel_escolar.id)
+        if SerieEscolar.objects.get(id=self.serie_id).nivel_escolar.id == 1:
+            context['url_papel_parede'] = 'assets/img/Event2.jpeg'
+        elif SerieEscolar.objects.get(id=self.serie_id).nivel_escolar.id == 2:
+            context['url_papel_parede'] = 'assets/img/papeldeparedef2.jpg'
+        elif SerieEscolar.objects.get(id=self.serie_id).nivel_escolar.id == 3:
+            context['url_papel_parede'] = 'assets/img/papeldeparede.jpg'
         return context
 
 
