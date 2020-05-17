@@ -85,7 +85,8 @@ class MaterialList(LoginRequiredMixin, ListView):
         #else:
         #    print('não tem páginas')
         self.total_registros = queryset.count() #total geral de registros filtrados      
-        return queryset.order_by('-id')
+        return queryset
+        #return queryset.order_by('-id')
         # return self.model.filter(user=request.user)  self.model suporta filter???
 
     def get_context_data(self, **kwargs):
