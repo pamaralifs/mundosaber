@@ -1,25 +1,22 @@
 {% extends 'base.html' %}
 {% load app_core_filters %}
-{% block conteudo %}
-<header class="masthead bg-secpondary text-secondary" id="cabecalho">
-    <div class="container d-flex align-items-center flex-column" id="textocabeca" >
-        Infantil
-   
-       </div>
+{% load static %}
+{% block conteudo %} 
+<header class="masthead bg-secpondary text-secondary" id="cabecalho" style="background-image: url('{% static 'assets/img/Event2.jpeg' %}')">
     <div class="container">
         <!-- Materias Section Heading-->
-        <div class="text-center">
-          <h2 class="page-section-heading d-inline-block mb-0">{{ nome_model_plural | upper }} - Educação Infantil</h2>
+        <div class="text-center" style="padding: 20px; background-color: rgba(23,162,184, 0.8);border-radius: 10px;">
+          <h2 class="d-inline-block mb-0 text-white" id="#textocabeca">{{ nome_model_plural }}</h2>
         </div>
       <!-- Lembretes Section Content-->
       {% if objects %}
-      <div class="row justify-content-center text-left">
+      <div class="row justify-content-center text-left" style="padding: 20px;">
           {% for object in objects %}
-          <div class="col-sm-6">
+          <div class="col-sm-5" style="padding-bottom: 10px;">
               <div class="card">
                   <div class="card-body">
-                      <h5 class="card-title">{{ object|value_field_index_filter:1 }} </h5>
-                      <p class="card-text">Clique para ir aos materiais do maternal </p>
+                    <h5 class="card-title">{{ object|value_field_index_filter:1 }}</h5>
+                      <p class="card-text">{{ nome_nivel }}</p>
                       <a href="#" class="btn btn-info">Clique aqui!</a>
                   </div>
               </div>

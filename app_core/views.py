@@ -56,11 +56,11 @@ class EducacaoInfantil(TemplateView):  # extend from TemplateView e NÃO TEM def
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
         #obj_series = NivelEscolar.objects.filter(series__visivel = 'S')
         #User.objects.get(id=1).receivers.all()
         obj_series = NivelEscolar.objects.get(id=1).series.all()
         context['nome_model_plural'] = Material._meta.verbose_name_plural
+        context['nome_nivel'] = NivelEscolar.objects.get(id=1)
         context['objects'] = obj_series
         return context
 
@@ -70,7 +70,12 @@ class EnsinoFundamental1(TemplateView):  # extend from TemplateView e NÃO TEM d
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        #context['now'] = datetime.now()
+        #obj_series = NivelEscolar.objects.filter(series__visivel = 'S')
+        #User.objects.get(id=1).receivers.all()
+        obj_series = NivelEscolar.objects.get(id=2).series.all()
+        context['nome_model_plural'] = Material._meta.verbose_name_plural
+        context['nome_nivel'] = NivelEscolar.objects.get(id=2)
+        context['objects'] = obj_series
         return context
 
 class EnsinoFundamental2(TemplateView):  # extend from TemplateView e NÃO TEM def query_set
@@ -78,5 +83,10 @@ class EnsinoFundamental2(TemplateView):  # extend from TemplateView e NÃO TEM d
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        #context['now'] = datetime.now()
+        #obj_series = NivelEscolar.objects.filter(series__visivel = 'S')
+        #User.objects.get(id=1).receivers.all()
+        obj_series = NivelEscolar.objects.get(id=3).series.all()
+        context['nome_model_plural'] = Material._meta.verbose_name_plural
+        context['nome_nivel'] = NivelEscolar.objects.get(id=3)
+        context['objects'] = obj_series
         return context
