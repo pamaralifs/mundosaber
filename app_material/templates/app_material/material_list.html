@@ -76,6 +76,7 @@
                   {% if object_list %}
                   <tr>
                     <th>{{ object_list|verbose_name_field_index_filter:1|upper }}</th>
+                    <th width='280'>{{ object_list|verbose_name_field_index_filter:7|upper }}</th>
                     <th width='70'>{{ object_list|verbose_name_field_index_filter:3|upper }}</th>
                     <th width='162'>AÇÃO</th>
                   </tr>
@@ -89,6 +90,7 @@
                   {% for object in object_list %}
                   <tr>
                     <td>{{ object|value_field_index_filter:1 }}</td>
+                    <td>{{ object.serie_escolar }}</td>
                     <td>{{ object|value_field_index_filter_S_N:3 }}</td>
                     <td class="text-center">
                       <a href="{% url url_download object.id %}" class="btn btn-primary btn-sm my-2 my-sm-0 btnSpace"><i class="fas fa-cloud-download-alt" title="Baixar"></i></a>

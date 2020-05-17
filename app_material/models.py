@@ -6,7 +6,7 @@ from app_serie_escolar.models import SerieEscolar
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     #return 'materiais/%Y/%m/%d/user_{0}/{1}'.format(instance.usuario.id, filename)
-    return 'materiais/{2}/{3}/{4}/user_{0}/{1}'.format(instance.usuario.id, filename,instance.data_hora_upload.strftime('%Y'),instance.data_hora_upload.strftime('%m'),instance.data_hora_upload.strftime('%d'))
+    return 'materiais/{0}_{3}_{4}_{5}_user_{1}/{2}'.format(instance.id,instance.usuario.id,filename,instance.data_hora_upload.strftime('%Y'),instance.data_hora_upload.strftime('%m'),instance.data_hora_upload.strftime('%d'))
 
 
 class Material(models.Model):
@@ -22,6 +22,17 @@ class Material(models.Model):
 
     def __str__(self):
         return self.titulo
+
+    # https://stackoverflow.com/questions/9968532/django-admin-file-upload-with-current-model-id
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            saved_arquivo = self.arquivo
+            self.arquivo = None
+            super(Material, self).save(*args, **kwargs)
+            self.arquivo = saved_arquivo
+            if 'force_insert' in kwargs:
+                kwargs.pop('force_insert')
+        super(Material, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Material'

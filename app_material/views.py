@@ -18,7 +18,7 @@ from django.core.paginator import Paginator # Para obter o total de páginas da 
 #CREATE
 class MaterialCreate(LoginRequiredMixin,SuccessMessageMixin,CreateView):
     model = Material
-    fields = ['titulo','arquivo','visivel','serie_escolar'] #removi os campos 'usuario' e 'nivel_escolar' e pego eles no def form_valid
+    fields = ['id','titulo','arquivo','visivel','serie_escolar'] #removi os campos 'usuario' e 'nivel_escolar' e pego eles no def form_valid
     success_url = reverse_lazy('app_material:material_create')
     success_message = ''
 
@@ -86,7 +86,6 @@ class MaterialList(LoginRequiredMixin, ListView):
         #    print('não tem páginas')
         self.total_registros = queryset.count() #total geral de registros filtrados      
         return queryset.order_by('-id')
-            
         # return self.model.filter(user=request.user)  self.model suporta filter???
 
     def get_context_data(self, **kwargs):

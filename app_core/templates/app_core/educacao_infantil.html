@@ -17,7 +17,7 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ object|value_field_index_filter:1 }}</h5>
                       <p class="card-text">{{ nome_nivel }}</p>
-                      <a href="#" class="btn btn-info">Clique aqui!</a>
+                      <a href="{% url url_listar_materiais object.id %}" class="btn btn-info">Clique aqui!</a>
                   </div>
               </div>
           </div> 

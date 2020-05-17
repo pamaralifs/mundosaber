@@ -5,7 +5,7 @@ app_name = 'app_core'
 
 urlpatterns = [
     path('', Home.as_view(),name='home'),
-    path('einfantil/', EducacaoInfantil.as_view(), name='educacao_infantil'),
-    path('efuntamental1/', EnsinoFundamental1.as_view(), name='ensino_fundamental_I'),
-    path('efuntamental2/', EnsinoFundamental2.as_view(), name='ensino_fundamental_II'),
+    path('ensino/<int:pk>', ListarSeriesNivel.as_view(), name='listar_series_nivel'),
+    path('materiais/<int:pk>', ListarMateriaisSerie.as_view(), name='listar_materiais'),
+    path('download/<int:pk>', MaterialDownload.as_view(), name='material_download'),
 ]

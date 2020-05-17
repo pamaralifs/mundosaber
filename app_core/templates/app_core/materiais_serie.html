@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load app_core_filters %}
+{% load static %}
+{% block conteudo %} 
+<header class="masthead bg-secpondary text-secondary" id="cabecalho" style="background-image: url('{% static 'assets/img/Event2.jpeg' %}')">
+    <div class="container">
+        <!-- Materias Section Heading-->
+        <div class="text-center" style="padding: 20px; background-color: rgba(23,162,184, 0.8);border-radius: 10px;">
+          <h2 class="d-inline-block mb-0 text-white" id="#textocabeca">{{ nome_model_plural }} - {{ nome_serie }}</h2>
+        </div>
+      <!-- Lembretes Section Content-->
+      {% if objects %}
+          <div class="row justify-content-center text-left" style="padding: 20px;">
+              {% for object in objects %}
+              <div class="col-sm-12" style="padding-bottom: 5px;">
+                  <div class="card">
+                      <div class="card-body row">
+                          <div class="col-11 font-weight-bold">{{ object|value_field_index_filter:1 }}</div>
+                          <div class="col-1"><a href="{% url url_download object.id %}" class="btn btn-info btn-sm"><i class="fas fa-cloud-download-alt" title="Baixar"></i></a></div>
+                      </div>
+                  </div>
+              </div> 
+              {% endfor %}
+          </div>
+        {% else %}
+          <div class="row justify-content-center text-left" style="padding: 20px;"></div>
+              <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-body row">
+                          <div class="col-11 font-weight-bold text-center">Não há materiais escolares do {{ nome_serie }} disponíveis para download!</div>
+                          <div class="col-1">&nbsp;</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        {% endif %}
+    </div>
+</header>
+{% endblock %}
