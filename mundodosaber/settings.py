@@ -27,7 +27,7 @@ SECRET_KEY = '%52(!fxt^yfa_3$3*xhfy&*oliuedi2!*wukk+n$6^e75hp(@$'
 DEBUG = False
 
 #ALLOWED_HOSTS = ['localhost','127.0.0.1','*','cemundosaber.pythoanywhere.com'] #
-ALLOWED_HOSTS = ['localhost','127.0.0.1','cemundosaber.com.br'] #
+ALLOWED_HOSTS = ['localhost','127.0.0.1','cemundosaber.pythoanywhere.com','cemundosaber.com.br'] #
 
 # Application definition
 
